@@ -39,6 +39,7 @@ The same steps work on any Ubuntu or Debian-based system. Only the device names 
 | [`docs/04-troubleshooting.md`](docs/04-troubleshooting.md) | Problems that came up in practice and how they were fixed |
 | [`docs/05-optional-raid1.md`](docs/05-optional-raid1.md) | Mirroring the two new drives with `mdadm` instead of using them separately |
 | [`docs/06-using-the-new-storage.md`](docs/06-using-the-new-storage.md) | Moving data, Docker storage, and why the system drive does not overflow automatically |
+| [`docs/images/`](docs/images/) | Screenshots from the real installation, used throughout the docs |
 | [`scripts/setup_drives.sh`](scripts/setup_drives.sh) | Optional automated version of the guide, with safety checks |
 | [`LICENSE`](LICENSE) | MIT License |
 
@@ -69,6 +70,24 @@ sudo chown -R $USER:$USER /mnt/data1
 ```
 
 Replace `sdX` with your new drive. Double-check it before every destructive command.
+
+## Screenshots
+
+Screenshots from the real installation are embedded in the guide at the step they belong to. A few highlights:
+
+**1. Identify the drives with `lsblk`.** The system drive `sda` has partitions and mount points; the new drives `sdb` and `sdc` are empty. (Serial numbers hidden.)
+
+![lsblk output showing the system drive and two empty new drives](docs/images/02-lsblk-new-drives.png)
+
+**2. Add the new drives to `/etc/fstab`** so they mount automatically at every boot.
+
+![fstab in nano with the two new drive entries](docs/images/05-fstab-duplicates-removed.png)
+
+**3. Verify.** One fstab line per drive, `mount -a` with no errors, and both drives listed at 3.6T.
+
+![Terminal confirming both new drives are mounted](docs/images/06-terminal-verification.png)
+
+All screenshots are in [`docs/images/`](docs/images/).
 
 ## Keywords
 

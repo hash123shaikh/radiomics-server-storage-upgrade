@@ -33,6 +33,10 @@ findmnt /mnt/data2
 
 If you edit fstab twice, you can end up with the same mount point listed twice (for example one line without `x-gvfs-show` and one with it). Systemd then has conflicting entries and may leave the drives unmounted.
 
+After deleting the first two (older) lines with `Ctrl+K`, the file should look like this, with the system entries untouched and only one line per new drive:
+
+![fstab in nano after the duplicate lines were removed, leaving one line each for /mnt/data1 and /mnt/data2](images/05-fstab-duplicates-removed.png)
+
 **Fix:**
 
 ```bash

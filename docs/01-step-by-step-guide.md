@@ -6,6 +6,10 @@ This guide assumes the drives are **already physically installed** and connected
 
 Throughout the guide, `sdb` and `sdc` are the new drives and `sda` is the existing system drive. Your letters may differ.
 
+The example machine, as shown in **Settings > About**: a Dell Precision 5820 Tower with 64 GB RAM, an Intel Xeon W-2265 CPU and Ubuntu 22.04.5 LTS. The "Disk Capacity" of 12.0 TB is the total of the existing 4 TB drive plus the two new 4 TB drives.
+
+![Ubuntu Settings > About screen showing Dell Precision 5820 Tower, 64 GiB memory, Xeon W-2265, Ubuntu 22.04.5 LTS and 12.0 TB disk capacity](images/01-system-info.png)
+
 ---
 
 ## Step 1. Identify the drives
@@ -25,6 +29,10 @@ sda    3.6T ST4000NM0265-2DC107  <serial>
 sdb    3.6T ST4000NM000B-2TF100  <serial>
 sdc    3.6T ST4000NM000B-2TF100  <serial>
 ```
+
+Screenshot from the real installation (the long list of `loop` entries at the top are Snap package images and can be ignored; the drive serial numbers have been hidden in this picture):
+
+![Terminal output of lsblk showing sda with partitions mounted at / and /boot/efi, and sdb and sdc as empty 3.6T drives](images/02-lsblk-new-drives.png)
 
 How to read it:
 
@@ -116,6 +124,10 @@ sudo cp /etc/fstab /etc/fstab.bak
 sudo nano /etc/fstab
 ```
 
+The file opens in the nano editor. It already contains three entries for the system drive (`/`, `/boot/efi` and `/swapfile`). Leave those exactly as they are.
+
+![fstab opened in nano showing the three existing entries for the system drive](images/03-fstab-open-in-nano.png)
+
 Scroll to the bottom and append:
 
 ```
@@ -124,6 +136,10 @@ UUID=yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy  /mnt/data2  ext4  defaults,nofail  0 
 ```
 
 Save with `Ctrl+O`, `Enter`, then exit with `Ctrl+X`. Leave the existing lines unchanged.
+
+When you press `Ctrl+O`, nano asks for the file name to write. It is already filled in as `/etc/fstab`, so just press `Enter`. The screenshot below also shows the two new lines added under the swapfile entry (this example already includes the optional `x-gvfs-show` option from step 11):
+
+![nano showing the two new drive lines added to fstab and the File Name to Write prompt](images/04-fstab-new-lines-save-prompt.png)
 
 Notes:
 
@@ -159,6 +175,10 @@ Verify each drive individually (note that `findmnt` accepts only one path at a t
 findmnt /mnt/data1
 findmnt /mnt/data2
 ```
+
+Screenshot of a successful run. `grep mnt /etc/fstab` shows exactly one line per drive, `mount -a` prints no errors, and `df -h` lists both new drives at 3.6T:
+
+![Terminal showing a clean fstab with two entries, mount -a succeeding and df -h listing /dev/sdb1 on /mnt/data1 and /dev/sdc1 on /mnt/data2](images/06-terminal-verification.png)
 
 ## Step 9. Set ownership
 
@@ -203,6 +223,10 @@ sudo mount -a
 ```
 
 Alternatively, open the folder in the file manager and press `Ctrl+D` to bookmark it.
+
+This is the **Devices and Locations** screen in the file manager. Before `x-gvfs-show` is added, only the system drive is listed, even though the new drives are mounted and working:
+
+![GNOME Devices and Locations screen listing only the Home folder and the system drive](images/07-devices-and-locations.png)
 
 ## Step 12 (optional). Reboot and confirm
 

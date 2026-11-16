@@ -6,6 +6,12 @@ Once the drives are mounted, nothing uses them automatically. You decide what go
 
 Each drive is a separate filesystem. If the system drive fills up, writes to it fail; Linux does not move files to the new drive. A full system drive can also break logins, package updates and Docker, so keep it from getting close to full.
 
+The file manager's **Properties** dialog for your Home folder reports the free space of the **system drive**, because Home lives on it. It does not include the new drives:
+
+![Properties dialog of the Home folder showing the free space of the system drive](images/08-home-folder-properties.png)
+
+The new drives are reached at `/mnt/data1` and `/mnt/data2` instead.
+
 Check what is using space on the system drive:
 
 ```bash
