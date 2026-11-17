@@ -75,7 +75,7 @@ Replace `sdX` with your new drive. Double-check it before every destructive comm
 
 Screenshots from the real installation are embedded in the guide at the step they belong to. A few highlights:
 
-**1. Identify the drives with `lsblk`.** The system drive `sda` has partitions and mount points; the new drives `sdb` and `sdc` are empty. (Serial numbers hidden.)
+**1. Identify the drives with `lsblk`.** The system drive `sda` has partitions and mount points; the new drives `sdb` and `sdc` are empty.
 
 ![lsblk output showing the system drive and two empty new drives](docs/images/02-lsblk-new-drives.png)
 

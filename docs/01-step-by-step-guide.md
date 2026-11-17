@@ -30,7 +30,7 @@ sdb    3.6T ST4000NM000B-2TF100  <serial>
 sdc    3.6T ST4000NM000B-2TF100  <serial>
 ```
 
-Screenshot from the real installation (the long list of `loop` entries at the top are Snap package images and can be ignored; the drive serial numbers have been hidden in this picture):
+Screenshot from the real installation (the long list of `loop` entries at the top are Snap package images and can be ignored):
 
 ![Terminal output of lsblk showing sda with partitions mounted at / and /boot/efi, and sdb and sdc as empty 3.6T drives](images/02-lsblk-new-drives.png)
 
