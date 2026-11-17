@@ -89,10 +89,6 @@ Screenshots from the real installation are embedded in the guide at the step the
 
 All screenshots are in [`docs/images/`](docs/images/).
 
-## Keywords
-
-`ubuntu` · `linux` · `hard-drive` · `hdd` · `disk-installation` · `storage` · `partitioning` · `gpt` · `parted` · `mkfs` · `ext4` · `fstab` · `uuid` · `mount` · `mdadm` · `raid1` · `lsblk` · `workstation` · `gpu-server` · `sysadmin` · `how-to` · `documentation` · `dell-precision`
-
 ## Important notes
 
 - **Formatting erases data.** Always confirm the target drive's serial number and that it has no filesystem and no mount point before you format it.
